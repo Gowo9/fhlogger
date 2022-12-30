@@ -37,7 +37,7 @@ func main() {
 		_, _ = ctx.WriteString("no-log")
 	})
 
-	// combined middleware and listen
+	// use fhZap.Combined function to embed other handler
 	finalHandler := fhZap.Combined(r.Handler)
 	if err = fasthttp.ListenAndServe("127.0.0.1:8080", finalHandler); err != nil {
 		log.Fatalf("fasthttp.ListenAndServe failed, err=%s", err)
